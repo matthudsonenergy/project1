@@ -26,7 +26,7 @@ dependencies = [
 [project.optional-dependencies]
 lca = [
     "brightway2>=2.4",
-    "bw2calc>=2.0",
+    "bw2calc>=1.8.2,<2.0",
     "bw2data>=3.5",
 ]
 
