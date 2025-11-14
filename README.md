@@ -66,6 +66,31 @@ tealca run-lca examples/ethanol_biorefinery.yaml --bw-project MyProject
 
 This command expects that you have already initialized a Brightway2 project containing the inventory data referenced in the configuration file.
 
+#### Run the LCA command in GitHub Codespaces
+
+You can execute the same LCA workflow inside a GitHub Codespace with the following steps:
+
+1. **Install the LCA dependencies.** In the Codespace terminal run:
+   ```bash
+   pip install -e .[lca]
+   ```
+2. **Initialize a Brightway2 project** (only required the first time). Launch the setup script to download the default Brightway databases and select the project name you pass to the CLI command:
+   ```bash
+   python - <<'PY'
+   from brightway2 import bw2setup, projects
+
+   bw2setup()  # Downloads biosphere flows and LCIA methods if they are missing
+   projects.set_current("MyProject")
+   PY
+   ```
+3. **Import or create the inventory data** that your YAML configuration references. You can use Brightway2's standard data import tools (e.g., Excel, JSON-LD, Brightway packages) inside the Codespace to populate the `MyProject` database.
+4. **Run the LCA calculation** from the repository root:
+   ```bash
+   tealca run-lca examples/ethanol_biorefinery.yaml --bw-project MyProject
+   ```
+
+GitHub Codespaces provide an ephemeral filesystem, so if you need to reuse the Brightway2 project, make sure to commit or export the necessary database files or rebuild them when you reopen the Codespace.
+
 ### Run integrated TEA + LCA scenario
 
 ```bash
