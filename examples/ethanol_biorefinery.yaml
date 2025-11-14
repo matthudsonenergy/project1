@@ -1,0 +1,53 @@
+metadata:
+  name: Ethanol Biorefinery Baseline
+  description: Baseline scenario for lignocellulosic ethanol production.
+  currency: USD
+  analysis_year: 2024
+
+economics:
+  discount_rate: 0.12
+  project_lifetime: 20
+  tax_rate: 0.21
+  depreciation_years: 7
+  capacity_factor: 0.9
+  production_rate_kg_per_hr: 12000
+  product_price_per_kg: 0.85
+  capital_expenditures:
+    - description: Pretreatment unit
+      amount: 8500000
+      year: 0
+    - description: Fermentation and distillation
+      amount: 12000000
+      year: 0
+    - description: Utilities and offsites
+      amount: 4500000
+      year: 0
+  operating_costs:
+    fixed:
+      - description: Labor
+        amount: 520000
+      - description: Maintenance
+        amount: 220000
+    variable:
+      - description: Feedstock
+        amount_per_kg: 0.22
+      - description: Enzymes
+        amount_per_kg: 0.05
+      - description: Utilities
+        amount_per_kg: 0.08
+  additional_revenue_streams:
+    - description: Lignin co-product
+      amount_per_kg: 0.06
+
+lca:
+  brightway_project: Ethanol-LCA
+  database: ecoinvent-3.9-cutoff
+  functional_unit:
+    dataset: ethanol production
+    reference_product: ethanol
+    amount: 1
+    unit: kilogram
+  impact_method:
+    name: ReCiPe Midpoint (H)
+    category: climate change
+    indicator: GWP100
